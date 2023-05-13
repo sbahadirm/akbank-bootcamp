@@ -1,4 +1,4 @@
-package com.bahadirmemis.akbankbootcamp;
+package com.bahadirmemis.akbankbootcamp.training;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author bahadirmemis
  */
-@RestController
-@RequestMapping("/api/v1/users")
-@Validated
+//@RestController
+//@RequestMapping("/api/v1/users")
+//@Validated
 public class UserController {
 
   @GetMapping

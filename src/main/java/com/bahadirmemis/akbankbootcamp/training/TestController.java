@@ -1,4 +1,4 @@
-package com.bahadirmemis.akbankbootcamp;
+package com.bahadirmemis.akbankbootcamp.training;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author bahadirmemis
  */
-@RestController
+//@RestController
 public class TestController {
 
   @RequestMapping(method = RequestMethod.GET, path = "/test1")

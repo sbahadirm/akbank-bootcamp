@@ -1,4 +1,4 @@
-package com.bahadirmemis.akbankbootcamp;
+package com.bahadirmemis.akbankbootcamp.training;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
