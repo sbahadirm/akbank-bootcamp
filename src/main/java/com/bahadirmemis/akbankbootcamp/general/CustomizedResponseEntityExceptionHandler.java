@@ -41,4 +41,16 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
     return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
   }
+
+  @ExceptionHandler
+  public final ResponseEntity<Object> handleAllExceptions(BusinessException e, WebRequest webRequest) {
+
+    String message = e.getBaseErrorMessage().getMessage();
+    String description = webRequest.getDescription(false);
+
+    var genericErrorMessage = new GenericErrorMessage(LocalDateTime.now(), message, description);
+    var response = RestResponse.error(genericErrorMessage);
+
+    return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 }
