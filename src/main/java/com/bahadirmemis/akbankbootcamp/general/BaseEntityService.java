@@ -1,5 +1,6 @@
 package com.bahadirmemis.akbankbootcamp.general;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -11,12 +12,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public abstract class BaseEntityService<E, R extends JpaRepository<E, Long>> {
+public abstract class BaseEntityService<E extends BaseEntity, R extends JpaRepository<E, Long>> {
 
   private final R repository;
 
   public E save(E entity){
-    return repository.save(entity);
+
+    BaseAdditionalFields baseAdditionalFields = entity.getBaseAdditionalFields();
+    if (baseAdditionalFields == null){
+      baseAdditionalFields = new BaseAdditionalFields();
+    }
+
+    if (entity.getId()  == null){
+      baseAdditionalFields.setCreateDate(LocalDateTime.now());
+      //baseAdditionalFields.setCreatedBy(0L); // TODO: JWT olsaydı oradan alacaktık
+    }
+
+    baseAdditionalFields.setUpdateDate(LocalDateTime.now());
+    //baseAdditionalFields.setUpdatedBy(0L);// TODO: JWT olsaydı oradan alacaktık
+
+    entity.setBaseAdditionalFields(baseAdditionalFields);
+    entity = repository.save(entity);
+
+    return entity;
   }
 
   public List<E> findAll() {
