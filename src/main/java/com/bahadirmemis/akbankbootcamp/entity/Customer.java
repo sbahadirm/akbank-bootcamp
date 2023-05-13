@@ -1,6 +1,7 @@
 package com.bahadirmemis.akbankbootcamp.entity;
 
 import com.bahadirmemis.akbankbootcamp.enums.EnumStatus;
+import com.bahadirmemis.akbankbootcamp.general.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -29,7 +30,7 @@ import lombok.Setter;
 @Table(name = "CUSTOMER")
 @Getter
 @Setter
-public class Customer {
+public class Customer extends BaseEntity {
 
   @Id
   @GeneratedValue(generator = "Customer", strategy = GenerationType.SEQUENCE)
