@@ -1,9 +1,12 @@
 package com.bahadirmemis.akbankbootcamp.controller;
 
-import com.bahadirmemis.akbankbootcamp.entity.Customer;
-import com.bahadirmemis.akbankbootcamp.service.entityservice.CustomerEntityService;
+import com.bahadirmemis.akbankbootcamp.controller.contract.CustomerControllerContract;
+import com.bahadirmemis.akbankbootcamp.dto.CustomerDTO;
+import com.bahadirmemis.akbankbootcamp.dto.CustomerSaveRequest;
+import com.bahadirmemis.akbankbootcamp.general.RestResponse;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,20 +23,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CustomerController {
 
-  private final CustomerEntityService customerEntityService;
+  private final CustomerControllerContract customerControllerContract;
 
   @PostMapping
-  public Customer save(@RequestBody Customer customer){
-    return customerEntityService.save(customer);
+  public ResponseEntity<RestResponse<CustomerDTO>> save(@RequestBody CustomerSaveRequest customerSaveRequest) {
+    var customerDTO = customerControllerContract.save(customerSaveRequest);
+    return ResponseEntity.ok(RestResponse.of(customerDTO));
   }
 
   @GetMapping
-  public List<Customer> findAll(){
-    return customerEntityService.findAll();
+  public ResponseEntity<RestResponse<List<CustomerDTO>>> findAll() {
+    var customerDTOList = customerControllerContract.findAll();
+    return ResponseEntity.ok(RestResponse.of(customerDTOList));
   }
 
   @DeleteMapping("/{id}")
-  public void delete(@PathVariable Long id){
-    customerEntityService.delete(id);
+  public ResponseEntity<RestResponse<Object>> delete(@PathVariable Long id) {
+    customerControllerContract.delete(id);
+    return ResponseEntity.ok(RestResponse.empty());
   }
 }
