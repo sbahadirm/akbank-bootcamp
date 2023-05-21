@@ -24,27 +24,27 @@ class MathUtilTest {
     Assertions.assertEquals(BigDecimal.valueOf(6), result);
   }
 
-  //@Test
-  //void shouldNotSumWhenNumber1IsNull(){
-  //
-  //  BigDecimal number1 = null;
-  //  BigDecimal number2 = BigDecimal.valueOf(5);
-  //
-  //  BusinessException businessException = assertThrows(BusinessException.class, () -> MathUtil.sum(number1, number2));
-  //
-  //  assertEquals(GeneralErrorMessage.VALUES_CANNOT_BE_NULL, businessException.getBaseErrorMessage());
-  //}
+  @Test
+  void shouldNotSumWhenNumber1IsNull(){
 
-  //@Test
-  //void shouldNotSumWhenNumber2IsNull(){
-  //
-  //  BigDecimal number1 = BigDecimal.valueOf(5);
-  //  BigDecimal number2 = null;
-  //
-  //  BusinessException businessException = assertThrows(BusinessException.class, () -> MathUtil.sum(number1, number2));
-  //
-  //  assertEquals(GeneralErrorMessage.VALUES_CANNOT_BE_NULL, businessException.getBaseErrorMessage());
-  //}
+    BigDecimal number1 = null;
+    BigDecimal number2 = BigDecimal.valueOf(5);
+
+    BusinessException businessException = assertThrows(BusinessException.class, () -> MathUtil.sum(number1, number2));
+
+    assertEquals(GeneralErrorMessage.VALUES_CANNOT_BE_NULL, businessException.getBaseErrorMessage());
+  }
+
+  @Test
+  void shouldNotSumWhenNumber2IsNull(){
+
+    BigDecimal number1 = BigDecimal.valueOf(5);
+    BigDecimal number2 = null;
+
+    BusinessException businessException = assertThrows(BusinessException.class, () -> MathUtil.sum(number1, number2));
+
+    assertEquals(GeneralErrorMessage.VALUES_CANNOT_BE_NULL, businessException.getBaseErrorMessage());
+  }
 
   @Test
   void shouldSumWhenNumber1IsNegative(){

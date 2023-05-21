@@ -2,6 +2,7 @@ package com.bahadirmemis.akbankbootcamp.general;
 
 import jakarta.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.TransactionSystemException;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  */
 @RestController
 @ControllerAdvice
+@Slf4j
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler
@@ -26,6 +28,8 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
     var genericErrorMessage = new GenericErrorMessage(LocalDateTime.now(), message, description);
     var response = RestResponse.error(genericErrorMessage);
+
+    log.error(genericErrorMessage.getMessage());
 
     return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
   }
@@ -50,6 +54,8 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
     var genericErrorMessage = new GenericErrorMessage(LocalDateTime.now(), message, description);
     var response = RestResponse.error(genericErrorMessage);
+
+    log.warn(genericErrorMessage.getMessage());
 
     return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
   }
