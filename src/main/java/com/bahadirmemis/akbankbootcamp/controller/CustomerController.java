@@ -42,4 +42,10 @@ public class CustomerController {
     customerControllerContract.delete(id);
     return ResponseEntity.ok(RestResponse.empty());
   }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<RestResponse<CustomerDTO>> findById(@PathVariable Long id) {
+    var customerDTO = customerControllerContract.findById(id);
+    return ResponseEntity.ok(RestResponse.of(customerDTO));
+  }
 }
