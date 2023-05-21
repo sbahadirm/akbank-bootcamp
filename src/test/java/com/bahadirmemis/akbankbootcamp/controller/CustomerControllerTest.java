@@ -60,7 +60,7 @@ class CustomerControllerTest extends BaseTest{
   @Test
   void shouldFindById() throws Exception {
     MvcResult mvcResult = mockMvc.perform(
-                                     MockMvcRequestBuilders.get("/api/v1/customers/2")
+                                     MockMvcRequestBuilders.get("/api/v1/customers/1000")
                                                            //.param("id", "18") TODO: control
                                          ).andExpect(MockMvcResultMatchers.status().isOk())
                                  .andReturn();
