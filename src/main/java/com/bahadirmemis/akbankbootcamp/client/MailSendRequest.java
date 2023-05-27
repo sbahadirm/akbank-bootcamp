@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MailSendRequestDtoTest {
+public class MailSendRequest {
 
     private String emailAddress;
     private String subject;

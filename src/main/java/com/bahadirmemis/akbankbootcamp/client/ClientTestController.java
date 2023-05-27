@@ -40,7 +40,12 @@ public class ClientTestController {
   }
 
   @PostMapping
-  public boolean sendMail(@RequestBody MailSendRequestDtoTest mailSendRequestDtoTest){
-    return mailApi.sendMail(mailSendRequestDtoTest);
+  public boolean sendMail(@RequestBody MailSendRequest mailSendRequest){
+
+    for (int i = 1; i <= 10; i++){
+      mailApi.sendMail(mailSendRequest);
+    }
+
+    return true;
   }
 }

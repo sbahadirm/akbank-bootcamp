@@ -1,9 +1,9 @@
 package com.bahadirmemis.akbankbootcamp.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 /**
  * @author bahadirmemis
@@ -15,5 +15,8 @@ public interface MailApi {
   String getMailAddress();
 
   @PostMapping
-  boolean sendMail(@RequestBody MailSendRequestDtoTest mailSendRequestDtoTest);
+  boolean sendMail(@RequestBody MailSendRequest mailSendRequest);
+
+  @PutMapping("/{id}")
+  String updatePrice(@PathVariable Long id, @RequestParam BigDecimal price);
 }
