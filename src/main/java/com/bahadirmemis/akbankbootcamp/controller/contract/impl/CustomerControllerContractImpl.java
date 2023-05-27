@@ -11,6 +11,7 @@ import com.bahadirmemis.akbankbootcamp.service.entityservice.CustomerEntityServi
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author bahadirmemis
@@ -21,12 +22,17 @@ public class CustomerControllerContractImpl implements CustomerControllerContrac
 
   private final CustomerEntityService customerEntityService;
 
+  @Transactional
   @Override
   public CustomerDTO save(CustomerSaveRequest request) {
 
     Customer customer = CustomerMapper.INSTANCE.convertToCustomer(request);
 
     customer = customerEntityService.save(customer);
+
+    if (1==1){
+      throw new RuntimeException("test");
+    }
 
     return CustomerMapper.INSTANCE.convertToCustomerDTO(customer);
   }
