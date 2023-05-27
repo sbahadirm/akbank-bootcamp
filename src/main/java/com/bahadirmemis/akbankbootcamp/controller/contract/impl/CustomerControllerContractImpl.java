@@ -30,10 +30,6 @@ public class CustomerControllerContractImpl implements CustomerControllerContrac
 
     customer = customerEntityService.save(customer);
 
-    if (1==1){
-      throw new RuntimeException("test");
-    }
-
     return CustomerMapper.INSTANCE.convertToCustomerDTO(customer);
   }
 
